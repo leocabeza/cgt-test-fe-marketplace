@@ -13,14 +13,15 @@ Migration from Create React App to Vite + React with modern tooling and proper f
 
 ## Phase 2: Styling & UI Foundation
 
-- [ ] Install and configure Tailwind CSS
-- [ ] Create responsive layout components (Header, Footer, Layout)
-- [ ] Setup component structure for pages (Home, Products, Cart)
-- [ ] Implement mobile-first responsive design
-- [ ] Create base styling system (colors, typography, spacing)
+- [*] Install and configure Tailwind CSS
+- [*] Create responsive layout components (Header, Footer, Layout)
+- [*] Setup component structure for pages (Home, Products, Cart)
+- [*] Implement mobile-first responsive design
+- [*] Create base styling system (colors, typography, spacing)
 
 ## Phase 3: Data & Content Migration
 
+- [ ] Add react-query to mock data-fetching
 - [ ] Move product images (a.jpg, b.jpg) to new assets folder
 - [ ] Create proper product data structure (JSON/constants)
 - [ ] Migrate existing page content to new route components

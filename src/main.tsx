@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import { BrowserRouter, Route, Routes } from 'react-router';
+import Layout from './Layout.tsx';
 import App from './App.tsx';
 import Cart from './cart/index.tsx';
 import ProductDetail from './products/[id]/index.tsx';
@@ -16,16 +17,16 @@ if (!root) {
 createRoot(root).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route index element={<App />} />
-
-        <Route path="cart" element={<Cart />} />
-
-        <Route path="products">
-          <Route index element={<Products />} />
-          <Route path=":productId" element={<ProductDetail />} />
-        </Route>
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route index element={<App />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="products">
+            <Route index element={<Products />} />
+            <Route path=":productId" element={<ProductDetail />} />
+          </Route>
+        </Routes>
+      </Layout>
     </BrowserRouter>
   </StrictMode>
 );

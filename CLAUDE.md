@@ -41,3 +41,7 @@ The project needs:
 ## Dependency Management
 
 - Always use pnpm to install/update remove dependencies for this project
+
+## Routing Guidance
+
+- Let's keep all react-router imports to react-router package and not react-router-dom

@@ -1,60 +1,54 @@
-# Marketplace MVP
+# React + TypeScript + Vite
 
-The goal of this task is to test your ability to test, refactor and implement new functionality on a given system. Note
-that this repository does not represent the actual code of CGTrader, but only acts as a testing ground.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## New Functionality
+Currently, two official plugins are available:
 
-Imagine the situation where management assigns you a task. Management wants you to implement basic MVP functionality for
-the marketplace. User should be able to navigate between home page, product page and cart page, add multiple items to the cart and
-see the total amount for payment.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Tasks
+## Expanding the ESLint configuration
 
-1. Implement MVP cart functionality
-2. Refactor implementation code and tests where you see fit. You have as much freedom here as you wish
-3. Take UI and UX in consideration. Improve the layout and styles using css/scss
-4. Make sure test suite runs through all of the tests successfully
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## Notes & Requirements
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+});
+```
 
-* You can spend as much time as you want.
-* You may refactor not only the application code, but the tests too. Keep in mind that test code is still code that
-needs to be maintained.
-* Use git to track your changes. **Fork or clone this repository** and commit often.
-* When finished, send us the link or the zip of the project via e-mail.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-Good luck!
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x';
+import reactDom from 'eslint-plugin-react-dom';
 
----
-
-## Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+});
+```

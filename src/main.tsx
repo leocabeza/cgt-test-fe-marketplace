@@ -4,7 +4,7 @@ import './index.css';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import App from './App.tsx';
 import Cart from './cart/index.tsx';
-import ProductDetail from './products/:id/index.tsx';
+import ProductDetail from './products/[id]/index.tsx';
 import Products from './products/index.tsx';
 
 const root = document.getElementById('root');

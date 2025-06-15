@@ -3,7 +3,8 @@ import Cart from './index';
 
 describe('Cart', () => {
   it('renders without crashing', () => {
-    render(<Cart />);
+    const { container } = render(<Cart />);
+    expect(container).toBeDefined();
   });
 
   it('displays the cart heading', () => {

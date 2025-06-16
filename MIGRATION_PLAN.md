@@ -36,6 +36,7 @@ Migration from Create React App to Vite + React with modern tooling and proper f
 - [x] standarize views
 - [x] fix tests
 - [x] remove react-query
+- [x] Link component in vike?, getNavLinkClass looks broken
 
 ## Phase 4: Cart Functionality
 

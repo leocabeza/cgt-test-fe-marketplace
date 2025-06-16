@@ -1,7 +1,8 @@
+import type { Product } from '@/components/ProductCard';
 import { useData } from 'vike-react/useData';
 
 export default function Page() {
-  const { product } = useData();
+  const { product } = useData<{ product: Product }>();
 
   if (!product) {
     return (

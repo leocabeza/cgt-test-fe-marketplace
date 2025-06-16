@@ -1,8 +1,8 @@
-import { useData } from 'vike-react/useData';
-import ProductCard from '@/components/ProductCard';
 import PageHeader from '@/components/PageHeader';
+import ProductCard, { type Product } from '@/components/ProductCard';
+import { useData } from 'vike-react/useData';
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products }: { products: Product[] }) => {
   return (
     <div className="mx-auto grid max-w-[1200px] grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-8">
       {products.map((product) => (
@@ -17,7 +17,7 @@ const ProductList = ({ products }) => {
 };
 
 export default function Page() {
-  const { products } = useData();
+  const { products = [] } = useData<{ products: Product[] }>();
 
   return (
     <PageHeader title="All Products" variant="standard">

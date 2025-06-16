@@ -12,7 +12,10 @@ export default function Layout({ children }) {
   const getNavLinkClass = (path) => {
     const baseClass =
       'text-neon-cyan-soft no-underline font-bold text-sm uppercase tracking-wide py-2 px-4 border border-transparent transition-all duration-300 relative overflow-hidden hover:text-neon-magenta-soft hover:border-neon-magenta-soft hover:bg-neon-magenta/10 hover:drop-shadow-[0_0_10px_currentColor]';
-    return currentPath.startsWith(path)
+    const isActive =
+      path === '/' ? currentPath === '/' : currentPath.startsWith(path);
+
+    return isActive
       ? `${baseClass} text-neon-lime-soft border-neon-lime-soft bg-neon-lime/20 drop-shadow-[0_0_15px_currentColor] shadow-[0_0_10px_rgba(0,255,0,0.3)]`
       : baseClass;
   };

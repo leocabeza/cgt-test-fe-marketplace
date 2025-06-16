@@ -13,21 +13,29 @@ Migration from Create React App to Vite + React with modern tooling and proper f
 
 ## Phase 2: Styling & UI Foundation
 
-- [*] Install and configure Tailwind CSS
-- [*] Create responsive layout components (Header, Footer, Layout)
-- [*] Setup component structure for pages (Home, Products, Cart)
-- [*] Implement mobile-first responsive design
-- [*] Create base styling system (colors, typography, spacing)
+- [x] Install and configure Tailwind CSS
+- [x] Create responsive layout components (Header, Footer, Layout)
+- [x] Setup component structure for pages (Home, Products, Cart)
+- [x] Implement mobile-first responsive design
+- [x] Create base styling system (colors, typography, spacing)
 
 ## Phase 3: Data & Content Migration
 
-- [ ] Add react-query to mock data-fetching
-- [ ] Move product images (a.jpg, b.jpg) to new assets folder
-- [ ] Create proper product data structure (JSON/constants)
-- [ ] Migrate existing page content to new route components
-- [ ] Setup proper page routing with React Router
-- [ ] Implement navigation between pages
-- [ ] Add 404/Not Found page handling
+- [x] Add react-query to mock data-fetching
+- [x] Move product images (a.jpg, b.jpg) to new assets folder
+- [x] Create proper product data structure (JSON/constants)
+- [x] Migrate existing page content to new route components
+- [x] Setup proper page routing with React Router
+- [x] Implement navigation between pages
+- [x] Add 404/Not Found page handling
+- [x] Update ts config for relative paths
+- [x] Lazy loading product images
+- [x] Use local font instead of remote
+- [x] SEO? (product url should have product title instead)
+- [x] Can we cache some products in the client? Like they were created on build time?
+- [x] standarize views
+- [x] fix tests
+- [x] remove react-query
 
 ## Phase 4: Cart Functionality
 
@@ -41,10 +49,9 @@ Migration from Create React App to Vite + React with modern tooling and proper f
 
 ## Phase 5: Testing & Quality
 
-- [ ] Setup Vitest configuration
+- [x] Setup Vitest configuration
 - [ ] Write tests for cart functionality
 - [ ] Write tests for routing and navigation
-- [ ] Test responsive design across devices
 - [ ] Add error boundaries for better error handling
 - [ ] Test accessibility (a11y) compliance
 

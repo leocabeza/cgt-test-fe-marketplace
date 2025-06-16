@@ -1,18 +1,15 @@
-import { Link, useLocation } from 'react-router';
+import { usePageContext } from 'vike-react/usePageContext';
+import '@/index.css';
 
 function cartItems() {
   return [];
 }
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
+export default function Layout({ children }) {
+  const pageContext = usePageContext();
+  const currentPath = pageContext.urlPathname;
 
-export default function Layout({ children }: LayoutProps) {
-  const location = useLocation();
-  const currentPath = location.pathname;
-
-  const getNavLinkClass = (path: string) => {
+  const getNavLinkClass = (path) => {
     const baseClass =
       'text-neon-cyan-soft no-underline font-bold text-sm uppercase tracking-wide py-2 px-4 border border-transparent transition-all duration-300 relative overflow-hidden hover:text-neon-magenta-soft hover:border-neon-magenta-soft hover:bg-neon-magenta/10 hover:drop-shadow-[0_0_10px_currentColor]';
     return currentPath.startsWith(path)
@@ -29,21 +26,21 @@ export default function Layout({ children }: LayoutProps) {
         <nav className="mt-4 flex justify-center">
           <ul className="border-neon-cyan m-0 flex list-none items-center gap-4 border bg-black/30 p-0 px-4 py-2 shadow-[0_0_15px_rgba(0,255,255,0.2),inset_0_0_15px_rgba(0,255,255,0.05)]">
             <li>
-              <Link to="/" className={getNavLinkClass('/')}>
+              <a href="/" className={getNavLinkClass('/')}>
                 Home
-              </Link>
+              </a>
             </li>
             <span className="text-text-secondary mx-2 text-xl">|</span>
             <li>
-              <Link to="/products" className={getNavLinkClass('/products')}>
+              <a href="/products" className={getNavLinkClass('/products')}>
                 All Products
-              </Link>
+              </a>
             </li>
             <span className="text-text-secondary mx-2 text-xl">|</span>
             <li>
-              <Link to="/cart" className={getNavLinkClass('/cart')}>
+              <a href="/cart" className={getNavLinkClass('/cart')}>
                 Cart ({cartItems().length})
-              </Link>
+              </a>
             </li>
           </ul>
         </nav>

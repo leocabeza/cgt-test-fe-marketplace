@@ -45,3 +45,7 @@ The project needs:
 ## Routing Guidance
 
 - Let's keep all react-router imports to react-router package and not react-router-dom
+
+## Code Best Practices
+
+- When making changes, and you think a foreach is needed, use a for loop instead

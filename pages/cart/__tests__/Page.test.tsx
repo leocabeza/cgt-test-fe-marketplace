@@ -1,20 +1,20 @@
-import { render, screen } from '../test-utils';
-import Cart from './index';
+import { render, screen } from '../../../src/test-utils';
+import Page from '../+Page';
 
-describe('Cart', () => {
+describe('Cart Page', () => {
   it('renders without crashing', () => {
-    const { container } = render(<Cart />);
+    const { container } = render(<Page />);
     expect(container).toBeDefined();
   });
 
   it('displays the cart heading', () => {
-    render(<Cart />);
+    render(<Page />);
 
     expect(screen.getByText('Your Cart')).toBeInTheDocument();
   });
 
   it('has the correct structure', () => {
-    render(<Cart />);
+    render(<Page />);
 
     const heading = screen.getByRole('heading', { name: 'Your Cart' });
     expect(heading).toBeInTheDocument();

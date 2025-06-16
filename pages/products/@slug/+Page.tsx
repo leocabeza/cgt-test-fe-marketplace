@@ -1,26 +1,7 @@
-import { useParams } from 'react-router';
-import pictureA from '../../assets/a.jpg';
-import pictureB from '../../assets/b.jpg';
+import { useData } from 'vike-react/useData';
 
-const ProductDetail = () => {
-  const { productId } = useParams();
-
-  const products = {
-    a: {
-      name: 'Product A',
-      price: '$10.00 USD',
-      image: pictureA,
-      alt: 'Product A',
-    },
-    b: {
-      name: 'Product B',
-      price: '$30.00 USD',
-      image: pictureB,
-      alt: 'Product B',
-    },
-  };
-
-  const product = products[productId as keyof typeof products];
+export default function Page() {
+  const { product } = useData();
 
   if (!product) {
     return (
@@ -28,9 +9,23 @@ const ProductDetail = () => {
         <h1 className="font-retro text-neon-magenta-soft mb-4 text-center text-[clamp(1.2rem,3vw,1.8rem)] drop-shadow-[0_0_20px_currentColor]">
           Product Not Found
         </h1>
-        <p className="text-text-secondary text-center">
+        <p className="text-text-secondary mb-8 text-center">
           The product you're looking for doesn't exist, dude!
         </p>
+        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <a
+            href="/products"
+            className="font-orbitron border-neon-cyan bg-neon-gradient text-text-soft shadow-neon-cyan hover:from-retro-purple hover:to-neon-cyan-soft hover:shadow-neon-cyan-intense active:shadow-neon-cyan cursor-pointer border-2 px-6 py-3 font-bold tracking-wide uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-gradient-to-r active:translate-y-0"
+          >
+            Browse Products
+          </a>
+          <a
+            href="/"
+            className="font-orbitron border-neon-lime text-neon-lime hover:bg-neon-lime hover:text-dark-surface cursor-pointer border-2 px-6 py-3 font-bold tracking-wide uppercase transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+          >
+            Back to Home
+          </a>
+        </div>
       </div>
     );
   }
@@ -41,7 +36,7 @@ const ProductDetail = () => {
         {product.name}
       </h1>
       <p className="text-neon-lime-soft mb-8 text-center text-2xl font-black drop-shadow-[0_0_15px_currentColor]">
-        Price: {product.price}
+        Price: ${product.price}
       </p>
 
       <div className="mb-6 text-center">
@@ -57,12 +52,16 @@ const ProductDetail = () => {
       <div className="text-center">
         <img
           src={product.image}
-          alt={product.alt}
-          className="border-neon-cyan mx-auto my-8 block h-auto w-full max-w-[500px] border-3 shadow-[0_0_20px_rgba(0,255,255,0.4),inset_0_0_20px_rgba(0,255,255,0.1)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,255,255,0.6),inset_0_0_40px_rgba(0,255,255,0.2)]"
+          alt={product.name}
+          className="border-neon-cyan mx-auto my-8 block h-64 w-full max-w-[500px] rounded border-3 object-cover shadow-[0_0_20px_rgba(0,255,255,0.4),inset_0_0_20px_rgba(0,255,255,0.1)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,255,255,0.6),inset_0_0_40px_rgba(0,255,255,0.2)]"
         />
+      </div>
+
+      <div className="mt-8">
+        <p className="text-text-soft text-center text-lg">
+          {product.description}
+        </p>
       </div>
     </div>
   );
-};
-
-export default ProductDetail;
+}

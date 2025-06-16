@@ -30,5 +30,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "pages/**/*.test.tsx", "pages/**/__tests__/**/*"]
+  "include": ["src", "pages/**/*"]
 }

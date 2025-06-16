@@ -1,15 +1,30 @@
+import { useCartStore } from '@/stores/cart';
+import { useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import { usePageContext } from 'vike-react/usePageContext';
 import '@/index.css';
 
-function cartItems() {
-  return [];
-}
-
-export default function Layout({ children }) {
+export default function Layout({ children }: { children: ReactNode }) {
   const pageContext = usePageContext();
   const currentPath = pageContext.urlPathname;
+  const items = useCartStore((state) => state.items);
+  const [isHydrated, setIsHydrated] = useState(false);
+  const [cartAnimation, setCartAnimation] = useState(false);
+  const [prevItemCount, setPrevItemCount] = useState(0);
 
-  const getNavLinkClass = (path) => {
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (isHydrated && items.length > prevItemCount) {
+      setCartAnimation(true);
+      setTimeout(() => setCartAnimation(false), 800);
+    }
+    setPrevItemCount(items.length);
+  }, [items.length, isHydrated, prevItemCount]);
+
+  const getNavLinkClass = (path: string) => {
     const baseClass =
       'text-neon-cyan-soft no-underline font-bold text-sm uppercase tracking-wide py-2 px-4 border border-transparent transition-all duration-300 relative overflow-hidden hover:text-neon-magenta-soft hover:border-neon-magenta-soft hover:bg-neon-magenta/10 hover:drop-shadow-[0_0_10px_currentColor]';
     const isActive =
@@ -42,7 +57,13 @@ export default function Layout({ children }) {
             <span className="text-text-secondary mx-2 text-xl">|</span>
             <li>
               <a href="/cart" className={getNavLinkClass('/cart')}>
-                Cart ({cartItems().length})
+                Cart (
+                <span
+                  className={`inline-block ${cartAnimation ? 'text-neon-lime-soft scale-110 drop-shadow-[0_0_10px_currentColor]' : ''} transition-all duration-300`}
+                >
+                  {isHydrated ? items.length : 0}
+                </span>
+                )
               </a>
             </li>
           </ul>

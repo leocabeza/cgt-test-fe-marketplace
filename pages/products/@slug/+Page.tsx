@@ -1,8 +1,10 @@
 import type { Product } from '@/components/ProductCard';
+import { useCartStore } from '@/stores/cart';
 import { useData } from 'vike-react/useData';
 
 export default function Page() {
   const { product } = useData<{ product: Product }>();
+  const addProduct = useCartStore((state) => state.addProduct);
 
   if (!product) {
     return (
@@ -43,7 +45,7 @@ export default function Page() {
       <div className="mb-6 text-center">
         <button
           className="font-orbitron border-neon-cyan bg-neon-gradient text-text-primary shadow-neon-cyan hover:from-retro-purple hover:to-neon-cyan hover:shadow-neon-cyan-intense active:shadow-neon-cyan cursor-pointer border-2 px-6 py-3 font-bold tracking-wide uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-gradient-to-r active:translate-y-0"
-          onClick={() => console.warn('Not implemented!')}
+          onClick={() => addProduct(product)}
           type="button"
         >
           Add to cart

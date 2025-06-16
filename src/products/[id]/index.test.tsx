@@ -1,21 +1,49 @@
-import { render, screen } from '../../test-utils';
+import { MemoryRouter, Route, Routes } from 'react-router';
+import { render as originalRender, screen } from '@testing-library/react';
 import ProductDetail from './index';
+
+// Custom render function for this component since it needs route params
+const renderWithRouter = (productId: string) => {
+  return originalRender(
+    <MemoryRouter initialEntries={[`/products/${productId}`]}>
+      <Routes>
+        <Route path="/products/:productId" element={<ProductDetail />} />
+      </Routes>
+    </MemoryRouter>
+  );
+};
 
 describe('ProductDetail', () => {
   it('renders without crashing', () => {
-    render(<ProductDetail />);
+    renderWithRouter('a');
   });
 
-  it('displays the product detail heading', () => {
-    render(<ProductDetail />);
+  it('displays the product detail heading for Product A', () => {
+    renderWithRouter('a');
 
-    expect(screen.getByText('Product Detail')).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'Product A' })
+    ).toBeInTheDocument();
+    expect(screen.getByText('Price: $10.00 USD')).toBeInTheDocument();
   });
 
-  it('has the correct structure', () => {
-    render(<ProductDetail />);
+  it('displays the product detail heading for Product B', () => {
+    renderWithRouter('b');
 
-    const heading = screen.getByRole('heading', { name: 'Product Detail' });
-    expect(heading).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'Product B' })
+    ).toBeInTheDocument();
+    expect(screen.getByText('Price: $30.00 USD')).toBeInTheDocument();
+  });
+
+  it('shows not found for invalid product', () => {
+    renderWithRouter('invalid');
+
+    expect(
+      screen.getByRole('heading', { name: 'Product Not Found' })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("The product you're looking for doesn't exist, dude!")
+    ).toBeInTheDocument();
   });
 });

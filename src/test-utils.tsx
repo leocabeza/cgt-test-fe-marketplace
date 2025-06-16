@@ -1,9 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
 import { type RenderOptions, render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 import type React from 'react';
 
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
-  return <>{children}</>;
+  return <MemoryRouter>{children}</MemoryRouter>;
 };
 
 const customRender = (

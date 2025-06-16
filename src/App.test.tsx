@@ -1,29 +1,23 @@
-import { render, screen, fireEvent } from './test-utils';
+import { render, screen } from './test-utils';
 import App from './App';
 
 describe('App', () => {
-  it('renders vite and react logos', () => {
+  it('renders without crashing', () => {
     render(<App />);
-
-    expect(screen.getByAltText('Vite logo')).toBeInTheDocument();
-    expect(screen.getByAltText('React logo')).toBeInTheDocument();
   });
 
   it('renders the main heading', () => {
     render(<App />);
 
-    expect(screen.getByText('Vite + React')).toBeInTheDocument();
+    expect(screen.getByText('Welcome to the Future!')).toBeInTheDocument();
   });
 
-  it('renders count button and increments count', () => {
+  it('renders product sections', () => {
     render(<App />);
 
-    const button = screen.getByRole('button', { name: /count is 0/i });
-    expect(button).toBeInTheDocument();
-
-    fireEvent.click(button);
-    expect(
-      screen.getByRole('button', { name: /count is 1/i })
-    ).toBeInTheDocument();
+    expect(screen.getByText('Product A')).toBeInTheDocument();
+    expect(screen.getByText('Product B')).toBeInTheDocument();
+    expect(screen.getByText('Check it out')).toBeInTheDocument();
+    expect(screen.getByText('Explore now')).toBeInTheDocument();
   });
 });

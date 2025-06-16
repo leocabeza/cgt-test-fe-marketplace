@@ -19,7 +19,8 @@ export default function Layout({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (isHydrated && items.length > prevItemCount) {
       setCartAnimation(true);
-      setTimeout(() => setCartAnimation(false), 800);
+      const timeoutId = setTimeout(() => setCartAnimation(false), 800);
+      return () => clearTimeout(timeoutId);
     }
     setPrevItemCount(items.length);
   }, [items.length, isHydrated, prevItemCount]);

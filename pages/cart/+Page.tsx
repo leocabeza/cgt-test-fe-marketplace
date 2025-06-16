@@ -39,8 +39,8 @@ export default function Page() {
             key={item.id}
             className="bg-neon-lime/10 border-neon-lime text-text-soft my-4 rounded border p-6 shadow-[0_0_10px_rgba(0,255,0,0.2)]"
           >
-            <div className="flex flex-col items-start gap-4 md:flex-row">
-              <div className="h-24 w-full flex-shrink-0 md:w-24">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center">
+              <div className="h-20 w-full flex-shrink-0 md:h-24 md:w-24">
                 <img
                   src={item.image}
                   alt={item.name}
@@ -49,18 +49,18 @@ export default function Page() {
               </div>
 
               <div className="flex-grow">
-                <h3 className="text-neon-cyan-soft mb-2 text-lg font-bold">
+                <h3 className="text-neon-cyan-soft mb-1 text-lg font-bold md:mb-2">
                   {item.name}
                 </h3>
-                <p className="text-text-secondary mb-2 text-sm">
+                <p className="text-text-secondary mb-1 text-sm md:mb-2">
                   {item.description}
                 </p>
-                <p className="text-neon-lime-soft text-lg font-black">
+                <p className="text-neon-lime-soft text-base font-black md:text-lg">
                   ${item.price.toFixed(2)} each
                 </p>
               </div>
 
-              <div className="flex min-w-[120px] flex-col items-center gap-2">
+              <div className="flex min-w-[120px] flex-col items-center gap-2 md:items-end md:justify-center">
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => updateQuantity(item.id, item.quantity - 1)}
@@ -81,7 +81,7 @@ export default function Page() {
                   </button>
                 </div>
 
-                <p className="text-neon-lime-soft text-sm font-bold">
+                <p className="text-neon-lime-soft text-center text-sm font-bold md:text-right">
                   Subtotal: ${(item.price * item.quantity).toFixed(2)}
                 </p>
 

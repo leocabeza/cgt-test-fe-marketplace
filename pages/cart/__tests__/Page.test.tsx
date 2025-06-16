@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@/test-utils';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useCartStore } from '@/stores/cart';
-import type { Product } from '@/components/ProductCard';
+import type { Product } from '@/types';
 import Page from '../+Page';
 
 // Mock the cart store

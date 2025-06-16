@@ -1,13 +1,5 @@
 import { useCartStore } from '@/stores/cart';
-
-export interface Product {
-  id: string;
-  slug: string;
-  name: string;
-  price: number;
-  description: string;
-  image: string;
-}
+import type { Product } from '@/types';
 
 interface ProductCardProps {
   product: Product;

@@ -1,4 +1,4 @@
-import type { Product } from '@/components/ProductCard';
+import type { Product } from '@/types';
 import { act, renderHook } from '@testing-library/react';
 import { useCartStore } from '../cart';
 

@@ -8,15 +8,7 @@ import sonyWalkmanImage from '@/assets/sony-walkman.avif';
 import tradingCardsImage from '@/assets/trading-cards.avif';
 import windows95LicenseImage from '@/assets/windows-95-license.avif';
 import windowsPcImage from '@/assets/windows-pc.avif';
-
-export interface Product {
-  id: string;
-  name: string;
-  slug: string;
-  price: number;
-  description: string;
-  image: string;
-}
+import type { Product } from '@/types';
 
 const mockProducts: Product[] = [
   {

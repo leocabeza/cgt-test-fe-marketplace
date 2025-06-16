@@ -1,6 +1,7 @@
 import PageHeader from '@/components/PageHeader';
-import ProductCard, { type Product } from '@/components/ProductCard';
+import ProductCard from '@/components/ProductCard';
 import { useData } from 'vike-react/useData';
+import type { Product } from '@/types';
 
 const ProductList = ({ products }: { products: Product[] }) => {
   return (

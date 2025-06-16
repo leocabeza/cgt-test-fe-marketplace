@@ -1,4 +1,4 @@
-import type { Product } from '@/components/ProductCard';
+import type { Product } from '@/types';
 import { useCartStore } from '@/stores/cart';
 import { useData } from 'vike-react/useData';
 

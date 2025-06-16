@@ -48,13 +48,17 @@ export default function Layout({ children }: { children: ReactNode }) {
                 Home
               </a>
             </li>
-            <span className="text-text-secondary mx-2 text-xl">|</span>
+            <li className="text-text-secondary mx-2 text-xl" aria-hidden="true">
+              |
+            </li>
             <li>
               <a href="/products" className={getNavLinkClass('/products')}>
                 All Products
               </a>
             </li>
-            <span className="text-text-secondary mx-2 text-xl">|</span>
+            <li className="text-text-secondary mx-2 text-xl" aria-hidden="true">
+              |
+            </li>
             <li>
               <a href="/cart" className={getNavLinkClass('/cart')}>
                 Cart (

@@ -38,11 +38,11 @@ const ProductCard = ({
         />
       </picture>
       <div className="flex flex-grow flex-col">
-        <h3
+        <h2
           className={`text-neon-cyan-soft ${marginBottom} text-center ${titleSizeClass} flex min-h-[3.5rem] items-center justify-center font-bold`}
         >
           {product.name}
-        </h3>
+        </h2>
         <p
           className={`text-neon-lime-soft ${priceMarginBottom} text-center ${priceSizeClass} font-black drop-shadow-[0_0_15px_currentColor]`}
         >

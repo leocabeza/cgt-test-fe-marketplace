@@ -20,6 +20,10 @@ describe('useToastStore', () => {
     vi.clearAllTimers();
   });
 
+  afterAll(() => {
+    vi.useRealTimers();
+  });
+
   describe('initial state', () => {
     it('starts with empty toasts array', () => {
       const { result } = renderHook(() => useToastStore());

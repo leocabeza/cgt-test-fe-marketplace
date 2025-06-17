@@ -8,8 +8,8 @@ export interface Toast {
   type: ToastType;
   duration?: number;
   isVisible: boolean;
-  hideTimeoutId?: NodeJS.Timeout;
-  removeTimeoutId?: NodeJS.Timeout;
+  hideTimeoutId?: ReturnType<typeof setTimeout>;
+  removeTimeoutId?: ReturnType<typeof setTimeout>;
 }
 
 interface ToastState {

@@ -1,13 +1,13 @@
-import alienReplica from '@/assets/alien-3d-replica.avif';
-import astronautSuit from '@/assets/astronaut-suit.avif';
-import cassetteCompilationImage from '@/assets/cassete-compilation-top-songs.avif';
-import cassettePlayerImage from '@/assets/cassete-player.avif';
-import nintendo64Image from '@/assets/nintendo-64-console.avif';
-import oldCameraImage from '@/assets/old-camera.avif';
-import sonyWalkmanImage from '@/assets/sony-walkman.avif';
-import tradingCardsImage from '@/assets/trading-cards.avif';
-import windows95LicenseImage from '@/assets/windows-95-license.avif';
-import windowsPcImage from '@/assets/windows-pc.avif';
+import alienReplica from '@/assets/alien-3d-replica.webp';
+import astronautSuit from '@/assets/astronaut-suit.webp';
+import cassetteCompilationImage from '@/assets/cassete-compilation-top-songs.webp';
+import cassettePlayerImage from '@/assets/cassete-player.webp';
+import nintendo64Image from '@/assets/nintendo-64-console.webp';
+import oldCameraImage from '@/assets/old-camera.webp';
+import sonyWalkmanImage from '@/assets/sony-walkman.webp';
+import tradingCardsImage from '@/assets/trading-cards.webp';
+import windows95LicenseImage from '@/assets/windows-95-license.webp';
+import windowsPcImage from '@/assets/windows-pc.webp';
 import type { Product } from '@/types';
 
 const mockProducts: Product[] = [

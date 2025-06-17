@@ -28,7 +28,7 @@ const ProductCard = ({
   return (
     <div className="from-dark-surface to-retro-purple/20 border-neon-cyan shadow-retro-glow before:via-neon-cyan/10 relative my-4 flex h-full flex-col overflow-hidden border-2 bg-gradient-to-br p-6 before:absolute before:top-0 before:-left-full before:h-full before:w-full before:bg-gradient-to-r before:from-transparent before:to-transparent before:transition-all before:duration-600 hover:before:left-full">
       <picture>
-        <source srcSet={product.image} type="image/avif" />
+        <source srcSet={product.image} type="image/webp" />
         <img
           src={product.image}
           alt={product.name}

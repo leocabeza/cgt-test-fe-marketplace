@@ -8,7 +8,7 @@ const mockProduct1: Product = {
   name: 'Test Product 1',
   price: 10.99,
   description: 'Test product 1 description',
-  image: '/test-image-1.avif',
+  image: '/test-image-1.webp',
 };
 
 const mockProduct2: Product = {
@@ -17,7 +17,7 @@ const mockProduct2: Product = {
   name: 'Test Product 2',
   price: 25.5,
   description: 'Test product 2 description',
-  image: '/test-image-2.avif',
+  image: '/test-image-2.webp',
 };
 
 // Mock localStorage to avoid persistence during tests
@@ -322,7 +322,7 @@ describe('useCartStore', () => {
         name: 'Expensive Product',
         price: 99.99,
         description: 'Very expensive',
-        image: '/expensive.avif',
+        image: '/expensive.webp',
       };
 
       act(() => {

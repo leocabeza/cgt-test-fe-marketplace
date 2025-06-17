@@ -8,7 +8,7 @@ const mockProducts: Product[] = [
     price: 25.99,
     description:
       'Detailed 3D alien replica figure, perfect for sci-fi enthusiasts and collectors.',
-    image: '/mock-alien.avif',
+    image: '/mock-alien.webp',
   },
   {
     id: '550e8400-e29b-41d4-a716-446655440002',
@@ -17,7 +17,7 @@ const mockProducts: Product[] = [
     price: 45.99,
     description:
       'Authentic astronaut suit replica with realistic details and space-age materials.',
-    image: '/mock-astronaut.avif',
+    image: '/mock-astronaut.webp',
   },
   {
     id: '550e8400-e29b-41d4-a716-446655440003',
@@ -26,7 +26,7 @@ const mockProducts: Product[] = [
     price: 15.99,
     description:
       'Classic compilation tape featuring the greatest hits from the golden era of music.',
-    image: '/mock-cassette.avif',
+    image: '/mock-cassette.webp',
   },
 ];
 

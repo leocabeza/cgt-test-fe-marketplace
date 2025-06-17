@@ -1,4 +1,4 @@
-import { render, screen } from '../../test-utils';
+import { render, screen } from '@/test-utils';
 import ProductCard from '../ProductCard';
 
 const mockProduct = {
@@ -7,7 +7,7 @@ const mockProduct = {
   name: 'Test Product',
   price: 99.99,
   description: 'This is a test product description',
-  image: '/test-image.avif',
+  image: '/test-image.webp',
 };
 
 describe('ProductCard', () => {
@@ -91,21 +91,21 @@ describe('ProductCard', () => {
     render(<ProductCard product={mockProduct} />);
 
     const image = screen.getByRole('img', { name: 'Test Product' });
-    expect(image).toHaveAttribute('src', '/test-image.avif');
+    expect(image).toHaveAttribute('src', '/test-image.webp');
     expect(image).toHaveAttribute('alt', 'Test Product');
     expect(image).toHaveAttribute('loading', 'lazy');
     expect(image).toHaveAttribute('decoding', 'async');
   });
 
-  it('includes picture element with source for avif format', () => {
+  it('includes picture element with source for webp format', () => {
     const { container } = render(<ProductCard product={mockProduct} />);
 
     const picture = container.querySelector('picture');
     expect(picture).toBeInTheDocument();
 
     const source = picture?.querySelector('source');
-    expect(source).toHaveAttribute('srcset', '/test-image.avif');
-    expect(source).toHaveAttribute('type', 'image/avif');
+    expect(source).toHaveAttribute('srcset', '/test-image.webp');
+    expect(source).toHaveAttribute('type', 'image/webp');
   });
 
   it('applies all required CSS classes for styling', () => {

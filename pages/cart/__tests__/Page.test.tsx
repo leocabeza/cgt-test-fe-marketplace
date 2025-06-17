@@ -1,6 +1,5 @@
-import { render, screen, fireEvent } from '@/test-utils';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useCartStore } from '@/stores/cart';
+import { fireEvent, render, screen } from '@/test-utils';
 import type { Product } from '@/types';
 import Page from '../+Page';
 
@@ -15,7 +14,7 @@ const mockProduct1: Product = {
   name: 'Test Product 1',
   price: 10.99,
   description: 'Test product 1 description',
-  image: '/test-image-1.avif',
+  image: '/test-image-1.webp',
 };
 
 const mockProduct2: Product = {
@@ -24,7 +23,7 @@ const mockProduct2: Product = {
   name: 'Test Product 2',
   price: 25.5,
   description: 'Test product 2 description',
-  image: '/test-image-2.avif',
+  image: '/test-image-2.webp',
 };
 
 const mockCartItem1 = { ...mockProduct1, quantity: 2 };
@@ -146,11 +145,11 @@ describe('Cart Page', () => {
       render(<Page />);
 
       const image1 = screen.getByAltText('Test Product 1');
-      expect(image1).toHaveAttribute('src', '/test-image-1.avif');
+      expect(image1).toHaveAttribute('src', '/test-image-1.webp');
       expect(image1).toHaveClass('w-full', 'h-full', 'object-cover', 'rounded');
 
       const image2 = screen.getByAltText('Test Product 2');
-      expect(image2).toHaveAttribute('src', '/test-image-2.avif');
+      expect(image2).toHaveAttribute('src', '/test-image-2.webp');
     });
 
     it('calls updateQuantity when increment button is clicked', () => {

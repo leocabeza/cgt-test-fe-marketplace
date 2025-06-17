@@ -9,6 +9,7 @@
 - @testing-library/react
 - pnpm
 - eslint/prettier
+- Claude code
 
 # General considerations
 

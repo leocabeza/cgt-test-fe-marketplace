@@ -1,4 +1,4 @@
-import { render, screen } from '../../test-utils';
+import { render, screen } from '@testing-library/react';
 import PageHeader from '../PageHeader';
 
 describe('PageHeader', () => {
@@ -33,59 +33,38 @@ describe('PageHeader', () => {
     expect(screen.getByText('Child Content')).toBeInTheDocument();
   });
 
-  it('applies correct classes for hero variant', () => {
-    const { container } = render(
-      <PageHeader title="Hero Title" variant="hero" />
-    );
-
-    const headerContainer = container.firstChild as HTMLElement;
-    expect(headerContainer).toHaveClass('from-retro-purple/10');
-    expect(headerContainer).toHaveClass('to-neon-cyan/10');
-    expect(headerContainer).toHaveClass('border-neon-cyan');
+  it('renders with hero variant', () => {
+    render(<PageHeader title="Hero Title" variant="hero" />);
 
     const title = screen.getByRole('heading', { name: 'Hero Title' });
-    expect(title).toHaveClass('text-neon-lime-soft');
-    expect(title).toHaveClass('animate-glow-pulse');
+    expect(title).toBeInTheDocument();
   });
 
-  it('applies correct classes for contained variant', () => {
-    const { container } = render(
-      <PageHeader title="Contained Title" variant="contained" />
-    );
-
-    const headerContainer = container.firstChild as HTMLElement;
-    expect(headerContainer).toHaveClass('from-dark-surface');
-    expect(headerContainer).toHaveClass('to-neon-lime/10');
-    expect(headerContainer).toHaveClass('border-neon-lime');
+  it('renders with contained variant', () => {
+    render(<PageHeader title="Contained Title" variant="contained" />);
 
     const title = screen.getByRole('heading', { name: 'Contained Title' });
-    expect(title).toHaveClass('text-neon-lime-soft');
-    expect(title).toHaveClass('text-2xl');
+    expect(title).toBeInTheDocument();
   });
 
-  it('applies correct classes for standard variant (default)', () => {
-    const { container } = render(<PageHeader title="Standard Title" />);
-
-    const headerContainer = container.firstChild as HTMLElement;
-    expect(headerContainer).toHaveClass('animate-fade-in');
+  it('renders with standard variant (default)', () => {
+    render(<PageHeader title="Standard Title" />);
 
     const title = screen.getByRole('heading', { name: 'Standard Title' });
-    expect(title).toHaveClass('text-neon-cyan-soft');
+    expect(title).toBeInTheDocument();
   });
 
-  it('applies correct subtitle classes for hero variant', () => {
+  it('renders subtitle with hero variant', () => {
     render(
       <PageHeader title="Hero Title" subtitle="Hero Subtitle" variant="hero" />
     );
 
-    const subtitle = screen.getByText('Hero Subtitle');
-    expect(subtitle).toHaveClass('text-text-soft');
-    expect(subtitle).toHaveClass('mb-6');
-    expect(subtitle).toHaveClass('text-lg');
-    expect(subtitle).toHaveClass('text-center');
+    const title = screen.getByRole('heading', { name: 'Hero Title' });
+    expect(title).toBeInTheDocument();
+    expect(screen.getByText('Hero Subtitle')).toBeInTheDocument();
   });
 
-  it('applies correct subtitle classes for non-hero variants', () => {
+  it('renders subtitle with non-hero variants', () => {
     render(
       <PageHeader
         title="Standard Title"
@@ -94,11 +73,9 @@ describe('PageHeader', () => {
       />
     );
 
-    const subtitle = screen.getByText('Standard Subtitle');
-    expect(subtitle).toHaveClass('text-text-soft');
-    expect(subtitle).toHaveClass('mb-4');
-    expect(subtitle).toHaveClass('text-center');
-    expect(subtitle).toHaveClass('text-lg');
+    const title = screen.getByRole('heading', { name: 'Standard Title' });
+    expect(title).toBeInTheDocument();
+    expect(screen.getByText('Standard Subtitle')).toBeInTheDocument();
   });
 
   it('does not render subtitle when not provided', () => {

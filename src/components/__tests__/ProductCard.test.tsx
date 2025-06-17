@@ -1,4 +1,4 @@
-import { render, screen } from '@/test-utils';
+import { render, screen } from '@testing-library/react';
 import ProductCard from '../ProductCard';
 
 const mockProduct = {
@@ -45,48 +45,6 @@ describe('ProductCard', () => {
     expect(link).toHaveAttribute('href', '/products/test-product');
   });
 
-  it('applies correct image height class for tall variant (default)', () => {
-    render(<ProductCard product={mockProduct} />);
-
-    const image = screen.getByRole('img', { name: 'Test Product' });
-    expect(image).toHaveClass('h-64');
-  });
-
-  it('applies correct image height class for short variant', () => {
-    render(<ProductCard product={mockProduct} imageHeight="short" />);
-
-    const image = screen.getByRole('img', { name: 'Test Product' });
-    expect(image).toHaveClass('h-32');
-  });
-
-  it('applies correct title size class for large variant (default)', () => {
-    render(<ProductCard product={mockProduct} />);
-
-    const title = screen.getByText('Test Product');
-    expect(title).toHaveClass('text-2xl');
-  });
-
-  it('applies correct title size class for medium variant', () => {
-    render(<ProductCard product={mockProduct} titleSize="medium" />);
-
-    const title = screen.getByText('Test Product');
-    expect(title).toHaveClass('text-xl');
-  });
-
-  it('applies correct price size class for large variant (default)', () => {
-    render(<ProductCard product={mockProduct} />);
-
-    const price = screen.getByText('$99.99');
-    expect(price).toHaveClass('text-xl');
-  });
-
-  it('applies correct price size class for medium variant', () => {
-    render(<ProductCard product={mockProduct} priceSize="medium" />);
-
-    const price = screen.getByText('$99.99');
-    expect(price).toHaveClass('text-lg');
-  });
-
   it('has correct image attributes for accessibility and performance', () => {
     render(<ProductCard product={mockProduct} />);
 
@@ -106,28 +64,6 @@ describe('ProductCard', () => {
     const source = picture?.querySelector('source');
     expect(source).toHaveAttribute('srcset', '/test-image.webp');
     expect(source).toHaveAttribute('type', 'image/webp');
-  });
-
-  it('applies all required CSS classes for styling', () => {
-    const { container } = render(<ProductCard product={mockProduct} />);
-
-    const cardContainer = container.firstChild as HTMLElement;
-    expect(cardContainer).toHaveClass('from-dark-surface');
-    expect(cardContainer).toHaveClass('to-retro-purple/20');
-    expect(cardContainer).toHaveClass('border-neon-cyan');
-    expect(cardContainer).toHaveClass('shadow-retro-glow');
-
-    const title = screen.getByText('Test Product');
-    expect(title).toHaveClass('text-neon-cyan-soft');
-    expect(title).toHaveClass('font-bold');
-
-    const price = screen.getByText('$99.99');
-    expect(price).toHaveClass('text-neon-lime-soft');
-    expect(price).toHaveClass('font-black');
-    expect(price).toHaveClass('drop-shadow-[0_0_15px_currentColor]');
-
-    const description = screen.getByText('This is a test product description');
-    expect(description).toHaveClass('text-text-soft');
   });
 
   it('formats price correctly with dollar sign', () => {

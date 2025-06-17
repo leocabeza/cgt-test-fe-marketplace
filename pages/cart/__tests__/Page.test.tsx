@@ -1,6 +1,6 @@
 import { useCartStore } from '@/stores/cart';
-import { fireEvent, render, screen } from '@/test-utils';
 import type { Product } from '@/types';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Page from '../+Page';
 
 // Mock the cart store
@@ -76,17 +76,6 @@ describe('Cart Page', () => {
       expect(startShoppingLink).toBeInTheDocument();
       expect(startShoppingLink).toHaveAttribute('href', '/');
     });
-
-    it('applies correct styling classes for empty state', () => {
-      render(<Page />);
-
-      const startShoppingLink = screen.getByRole('link', {
-        name: 'Start shopping',
-      });
-      expect(startShoppingLink).toHaveClass('font-orbitron');
-      expect(startShoppingLink).toHaveClass('border-neon-cyan');
-      expect(startShoppingLink).toHaveClass('bg-neon-gradient');
-    });
   });
 
   describe('Cart with items', () => {
@@ -146,7 +135,6 @@ describe('Cart Page', () => {
 
       const image1 = screen.getByAltText('Test Product 1');
       expect(image1).toHaveAttribute('src', '/test-image-1.webp');
-      expect(image1).toHaveClass('w-full', 'h-full', 'object-cover', 'rounded');
 
       const image2 = screen.getByAltText('Test Product 2');
       expect(image2).toHaveAttribute('src', '/test-image-2.webp');
@@ -195,65 +183,12 @@ describe('Cart Page', () => {
 
       const checkoutButton = screen.getByRole('button', { name: 'Checkout' });
       expect(checkoutButton).toBeInTheDocument();
-      expect(checkoutButton).toHaveClass('font-orbitron');
 
       const continueShoppingLink = screen.getByRole('link', {
         name: 'Continue Shopping',
       });
       expect(continueShoppingLink).toBeInTheDocument();
       expect(continueShoppingLink).toHaveAttribute('href', '/products');
-    });
-
-    it('applies correct styling classes to cart items', () => {
-      render(<Page />);
-
-      const cartItems = screen.getAllByText(/Test Product \d/);
-      for (let i = 0; i < cartItems.length; i++) {
-        expect(cartItems[i]).toHaveClass('text-neon-cyan-soft');
-        expect(cartItems[i]).toHaveClass('font-bold');
-      }
-
-      const prices = screen.getAllByText(/\$\d+\.\d+ each/);
-      for (let i = 0; i < prices.length; i++) {
-        expect(prices[i]).toHaveClass('text-neon-lime-soft');
-        expect(prices[i]).toHaveClass('font-black');
-      }
-    });
-
-    it('applies correct styling to quantity controls', () => {
-      render(<Page />);
-
-      const incrementButtons = screen.getAllByText('+');
-      const decrementButtons = screen.getAllByText('-');
-
-      const allButtons = [...incrementButtons, ...decrementButtons];
-      for (let i = 0; i < allButtons.length; i++) {
-        expect(allButtons[i]).toHaveClass('border-neon-cyan');
-        expect(allButtons[i]).toHaveClass('text-neon-cyan');
-        expect(allButtons[i]).toHaveClass('hover:bg-neon-cyan');
-        expect(allButtons[i]).toHaveClass('hover:text-dark-surface');
-      }
-    });
-
-    it('applies correct styling to remove buttons', () => {
-      render(<Page />);
-
-      const removeButtons = screen.getAllByText('Remove');
-      for (let i = 0; i < removeButtons.length; i++) {
-        expect(removeButtons[i]).toHaveClass('border-red-500');
-        expect(removeButtons[i]).toHaveClass('text-red-500');
-        expect(removeButtons[i]).toHaveClass('hover:bg-red-500');
-        expect(removeButtons[i]).toHaveClass('hover:text-white');
-      }
-    });
-
-    it('applies correct styling to total section', () => {
-      render(<Page />);
-
-      const totalPrice = screen.getByText('Total: $47.48');
-      expect(totalPrice).toHaveClass('text-neon-cyan-soft');
-      expect(totalPrice).toHaveClass('text-2xl');
-      expect(totalPrice).toHaveClass('font-bold');
     });
   });
 

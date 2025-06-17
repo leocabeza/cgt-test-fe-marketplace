@@ -38,18 +38,21 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   return (
     <div className="from-dark-bg to-dark-surface text-text-soft flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-br bg-fixed">
-      <header className="from-dark-surface via-retro-purple to-dark-surface border-neon-cyan before:from-neon-magenta before:via-neon-cyan before:via-neon-lime before:via-neon-cyan before:to-neon-magenta before:animate-rainbow-slide relative border-b-3 bg-gradient-to-r px-8 py-4 shadow-[0_5px_15px_rgba(0,255,255,0.3),inset_0_1px_0_rgba(255,255,255,0.1)] before:absolute before:top-0 before:right-0 before:left-0 before:h-0.5 before:bg-gradient-to-r">
-        <h1 className="font-retro text-neon-cyan-soft animate-glow-pulse mb-4 text-center text-[clamp(1.2rem,3vw,2rem)] tracking-wide drop-shadow-[2px_2px_0px_#ff00ff,4px_4px_0px_#0a0a1a,0_0_20px_#00ffff]">
+      <header className="from-dark-surface via-retro-purple to-dark-surface border-neon-cyan before:from-neon-magenta before:via-neon-cyan before:via-neon-lime before:via-neon-cyan before:to-neon-magenta before:animate-rainbow-slide relative border-b-3 bg-gradient-to-r px-4 py-3 shadow-[0_5px_15px_rgba(0,255,255,0.3),inset_0_1px_0_rgba(255,255,255,0.1)] before:absolute before:top-0 before:right-0 before:left-0 before:h-0.5 before:bg-gradient-to-r sm:px-8 sm:py-4">
+        <h1 className="font-retro text-neon-cyan-soft animate-glow-pulse mb-3 text-center text-[clamp(1rem,4vw,2rem)] tracking-wide drop-shadow-[2px_2px_0px_#ff00ff,4px_4px_0px_#0a0a1a,0_0_20px_#00ffff] sm:mb-4">
           90's SHOP
         </h1>
-        <nav className="mt-4 flex justify-center">
-          <ul className="border-neon-cyan m-0 flex list-none items-center gap-4 border bg-black/30 p-0 px-4 py-2 shadow-[0_0_15px_rgba(0,255,255,0.2),inset_0_0_15px_rgba(0,255,255,0.05)]">
+        <nav className="mt-2 flex justify-center sm:mt-4">
+          <ul className="border-neon-cyan m-0 flex list-none flex-col items-center gap-2 border bg-black/30 p-0 px-3 py-2 shadow-[0_0_15px_rgba(0,255,255,0.2),inset_0_0_15px_rgba(0,255,255,0.05)] sm:flex-row sm:gap-4 sm:px-4">
             <li>
               <a href="/" className={getNavLinkClass('/')}>
                 Home
               </a>
             </li>
-            <li className="text-text-secondary mx-2 text-xl" aria-hidden="true">
+            <li
+              className="text-text-secondary hidden text-xl sm:mx-2 sm:block"
+              aria-hidden="true"
+            >
               |
             </li>
             <li>
@@ -57,7 +60,10 @@ export default function Layout({ children }: { children: ReactNode }) {
                 All Products
               </a>
             </li>
-            <li className="text-text-secondary mx-2 text-xl" aria-hidden="true">
+            <li
+              className="text-text-secondary hidden text-xl sm:mx-2 sm:block"
+              aria-hidden="true"
+            >
               |
             </li>
             <li>
@@ -75,11 +81,11 @@ export default function Layout({ children }: { children: ReactNode }) {
         </nav>
       </header>
 
-      <main className="mx-auto w-full max-w-[1200px] flex-1 p-8">
+      <main className="mx-auto w-full max-w-[1200px] flex-1 p-4 sm:p-8">
         {children}
       </main>
 
-      <footer className="from-dark-surface to-dark-bg border-neon-cyan text-text-soft border-t-3 bg-gradient-to-r px-8 py-6 text-center shadow-[0_-5px_15px_rgba(0,255,255,0.2)]">
+      <footer className="from-dark-surface to-dark-bg border-neon-cyan text-text-soft border-t-3 bg-gradient-to-r px-4 py-4 text-center shadow-[0_-5px_15px_rgba(0,255,255,0.2)] sm:px-8 sm:py-6">
         <div className="font-orbitron space-y-2 text-sm">
           <p>Made by: Leonardo Cabeza</p>
           <p>2025</p>

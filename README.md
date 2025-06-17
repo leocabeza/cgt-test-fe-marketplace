@@ -13,6 +13,7 @@
 # General considerations
 
 - I used a 90's theme to style the app using tailwindcss
+- Site is mobile-first, and it's responsive
 - I used vite for it's simplicity
 - I used vitest for it's speed and simplicity
 - I used vike to provide me with SSG so navigation is faster for end-users

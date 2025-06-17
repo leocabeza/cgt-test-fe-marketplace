@@ -5,14 +5,12 @@ import type { Product } from '@/types';
 
 const FeaturedProducts = ({ products }: { products: Product[] }) => {
   return (
-    <div className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8">
+    <div className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:gap-8">
       {products.map((product) => (
         <ProductCard
           key={product.id}
           product={product}
           buttonText="Check it out"
-          titleSize="medium"
-          priceSize="medium"
         />
       ))}
     </div>

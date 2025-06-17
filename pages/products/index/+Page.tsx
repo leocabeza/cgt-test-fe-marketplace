@@ -5,7 +5,7 @@ import type { Product } from '@/types';
 
 const ProductList = ({ products }: { products: Product[] }) => {
   return (
-    <div className="mx-auto grid max-w-[1200px] grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-8">
+    <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:gap-8">
       {products.map((product) => (
         <ProductCard
           key={product.id}

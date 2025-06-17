@@ -1,6 +1,7 @@
 import type { Product } from '@/types';
 import { act, renderHook } from '@testing-library/react';
 import { useCartStore } from '../cart';
+import { useToastStore } from '../toast';
 
 const mockProduct1: Product = {
   id: '1',
@@ -37,10 +38,18 @@ describe('useCartStore', () => {
     // Clear all mocks and reset store state
     vi.clearAllMocks();
 
-    // Reset the store state by clearing it
-    const { result } = renderHook(() => useCartStore());
+    // Reset the cart store state by clearing it
+    const { result: cartResult } = renderHook(() => useCartStore());
     act(() => {
-      result.current.clearCart();
+      cartResult.current.clearCart();
+    });
+
+    // Reset the toast store state by clearing toasts
+    const { result: toastResult } = renderHook(() => useToastStore());
+    act(() => {
+      for (const toast of toastResult.current.toasts) {
+        toastResult.current.removeToast(toast.id);
+      }
     });
   });
 
@@ -69,6 +78,22 @@ describe('useCartStore', () => {
       });
     });
 
+    it('shows success toast when adding new product', () => {
+      const { result: cartResult } = renderHook(() => useCartStore());
+      const { result: toastResult } = renderHook(() => useToastStore());
+
+      act(() => {
+        cartResult.current.addProduct(mockProduct1);
+      });
+
+      expect(toastResult.current.toasts).toHaveLength(1);
+      expect(toastResult.current.toasts[0]).toMatchObject({
+        message: 'Test Product 1 added to cart!',
+        type: 'success',
+        isVisible: true,
+      });
+    });
+
     it('increments quantity when adding existing product', () => {
       const { result } = renderHook(() => useCartStore());
 
@@ -79,6 +104,33 @@ describe('useCartStore', () => {
 
       expect(result.current.items).toHaveLength(1);
       expect(result.current.items[0].quantity).toBe(2);
+    });
+
+    it('shows quantity increased toast when adding existing product', () => {
+      const { result: cartResult } = renderHook(() => useCartStore());
+      const { result: toastResult } = renderHook(() => useToastStore());
+
+      act(() => {
+        cartResult.current.addProduct(mockProduct1);
+      });
+
+      // Clear the first toast to focus on the second one
+      act(() => {
+        for (const toast of toastResult.current.toasts) {
+          toastResult.current.removeToast(toast.id);
+        }
+      });
+
+      act(() => {
+        cartResult.current.addProduct(mockProduct1);
+      });
+
+      expect(toastResult.current.toasts).toHaveLength(1);
+      expect(toastResult.current.toasts[0]).toMatchObject({
+        message: 'Test Product 1 quantity increased in cart!',
+        type: 'success',
+        isVisible: true,
+      });
     });
 
     it('adds multiple different products', () => {
@@ -94,6 +146,26 @@ describe('useCartStore', () => {
       expect(result.current.items[1].id).toBe('2');
       expect(result.current.items[0].quantity).toBe(1);
       expect(result.current.items[1].quantity).toBe(1);
+    });
+
+    it('shows separate toasts for different products', () => {
+      const { result: cartResult } = renderHook(() => useCartStore());
+      const { result: toastResult } = renderHook(() => useToastStore());
+
+      act(() => {
+        cartResult.current.addProduct(mockProduct1);
+        cartResult.current.addProduct(mockProduct2);
+      });
+
+      expect(toastResult.current.toasts).toHaveLength(2);
+      expect(toastResult.current.toasts[0].message).toBe(
+        'Test Product 1 added to cart!'
+      );
+      expect(toastResult.current.toasts[1].message).toBe(
+        'Test Product 2 added to cart!'
+      );
+      expect(toastResult.current.toasts[0].type).toBe('success');
+      expect(toastResult.current.toasts[1].type).toBe('success');
     });
   });
 
@@ -331,6 +403,46 @@ describe('useCartStore', () => {
       });
 
       expect(result.current.getTotalPrice()).toBeCloseTo(299.97, 2);
+    });
+
+    it('toast integration does not affect cart operations', () => {
+      const { result: cartResult } = renderHook(() => useCartStore());
+      const { result: toastResult } = renderHook(() => useToastStore());
+
+      // Add products and verify both cart and toast state
+      act(() => {
+        cartResult.current.addProduct(mockProduct1);
+        cartResult.current.addProduct(mockProduct2);
+        cartResult.current.addProduct(mockProduct1); // Should increment quantity
+      });
+
+      // Verify cart state is correct
+      expect(cartResult.current.items).toHaveLength(2);
+      expect(cartResult.current.items[0].quantity).toBe(2);
+      expect(cartResult.current.items[1].quantity).toBe(1);
+      expect(cartResult.current.getTotalPrice()).toBeCloseTo(47.48, 2);
+      expect(cartResult.current.getTotalItems()).toBe(3);
+
+      // Verify toasts were created
+      expect(toastResult.current.toasts).toHaveLength(3);
+
+      // Remove a product and verify cart still works correctly
+      act(() => {
+        cartResult.current.removeProduct('1');
+      });
+
+      expect(cartResult.current.items).toHaveLength(1);
+      expect(cartResult.current.items[0].id).toBe('2');
+      expect(cartResult.current.getTotalPrice()).toBe(25.5);
+
+      // Clear cart and verify it works
+      act(() => {
+        cartResult.current.clearCart();
+      });
+
+      expect(cartResult.current.items).toHaveLength(0);
+      expect(cartResult.current.getTotalPrice()).toBe(0);
+      expect(cartResult.current.getTotalItems()).toBe(0);
     });
 
     it('maintains cart state through multiple operations', () => {

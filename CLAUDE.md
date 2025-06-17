@@ -48,4 +48,9 @@ The project needs:
 
 ## Code Best Practices
 
-- When making changes, and you think a foreach is needed, use a for loop instead
+- Prefer for...of instead of forEach
+- When doing cleanup/modifications, make sure to remove unused imports and/or variables
+
+## Testing Guidelines
+
+- When creating unit tests, make sure not to test css/styles/classes, just functionality

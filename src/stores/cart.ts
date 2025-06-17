@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { Product, CartItem } from '@/types';
+import { useToastStore } from './toast';
 
 interface CartState {
   items: CartItem[];
@@ -23,7 +24,11 @@ export const useCartStore = create<CartState>()(
             (item) => item.id === product.id
           );
 
+          // Show toast notification
+          const addToast = useToastStore.getState().addToast;
+
           if (existingItem) {
+            addToast(`${product.name} quantity increased in cart!`, 'success');
             return {
               items: state.items.map((item) =>
                 item.id === product.id
@@ -33,6 +38,7 @@ export const useCartStore = create<CartState>()(
             };
           }
 
+          addToast(`${product.name} added to cart!`, 'success');
           return {
             items: [...state.items, { ...product, quantity: 1 }],
           };

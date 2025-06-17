@@ -2,6 +2,7 @@ import { useCartStore } from '@/stores/cart';
 import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import { usePageContext } from 'vike-react/usePageContext';
+import ToastContainer from '@/components/ToastContainer';
 import '@/index.css';
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -102,6 +103,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           </p>
         </div>
       </footer>
+      <ToastContainer />
     </div>
   );
 }

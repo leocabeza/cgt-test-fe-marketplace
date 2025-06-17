@@ -65,6 +65,7 @@ Migration from Create React App to Vite + React with modern tooling and proper f
 - [x] Implement proper form validation if needed
 - [x] Add success/error notifications
 - [x] Final UI/UX review and improvements
+- [x] Added a toast when user adds a product to the cart
 
 ## Phase 7: Deployment Ready
 

@@ -78,6 +78,24 @@ export default function Layout({ children }: { children: ReactNode }) {
       <main className="mx-auto w-full max-w-[1200px] flex-1 p-8">
         {children}
       </main>
+
+      <footer className="from-dark-surface to-dark-bg border-neon-cyan text-text-soft border-t-3 bg-gradient-to-r px-8 py-6 text-center shadow-[0_-5px_15px_rgba(0,255,255,0.2)]">
+        <div className="font-orbitron space-y-2 text-sm">
+          <p>Made by: Leonardo Cabeza</p>
+          <p>2025</p>
+          <p>
+            Source:{' '}
+            <a
+              href="https://github.com/leocabeza/cgt-test-fe-marketplace/tree/feat/revamp-marketplace"
+              className="text-neon-cyan-soft hover:text-neon-magenta-soft underline transition-colors duration-300 hover:drop-shadow-[0_0_8px_currentColor]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
